@@ -1,0 +1,127 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+#imgContainer {
+  position: relative;
+  width: 500px;
+  min-width: 500px;
+  margin: 0 auto;
+  height: 400px;
+  min-height: 200px;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 5px #000;
+  -moz-box-shadow: 0 0  5px #000;
+  box-shadow: 0 0  5px #000; }
+  #imgContainer .topBar {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc;
+    padding: 0 10px; }
+    #imgContainer .topBar span {
+      float: left; }
+    #imgContainer .topBar .dirUrl {
+      float: left;
+      height: 30px;
+      padding: 0 10px;
+      width: 250px;
+      margin-top: 5px; }
+    #imgContainer .topBar button, #imgContainer .topBar .btnUpload {
+      float: right;
+      width: 60px;
+      height: 30px;
+      line-height: 30px;
+      margin: 4px 5px 0 0;
+      cursor: pointer; }
+      #imgContainer .topBar button:first-child, #imgContainer .topBar .btnUpload:first-child {
+        margin-right: 0; }
+    #imgContainer .topBar .btnUpload {
+      text-align: center;
+      font-size: 14px;
+      border: 1px solid #aaa;
+      background-color: #e3e3e3; }
+  #imgContainer #imgs {
+    height: 85%;
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: auto; }
+  #imgContainer .item {
+    float: left;
+    position: relative;
+    width: 100px;
+    height: 150px;
+    line-height: 90px;
+    text-align: center;
+    overflow: hidden;
+    margin: 10px 0 0 10px; }
+    #imgContainer .item img {
+      max-width: 100%;
+      max-height: 90px;
+      padding: 10px;
+      vertical-align: middle; }
+    #imgContainer .item .text {
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+      height: 25px;
+      line-height: 25px;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer; }
+    #imgContainer .item .btnOperation {
+      position: absolute;
+      bottom: 0;
+      height: 30px;
+      line-height: 30px;
+      width: 100%;
+      padding: 0 10px; }
+      #imgContainer .item .btnOperation button, #imgContainer .item .btnOperation .topBar .btnUpload, #imgContainer .topBar .item .btnOperation .btnUpload {
+        cursor: pointer; }
+      #imgContainer .item .btnOperation .copy {
+        float: left; }
+      #imgContainer .item .btnOperation .delete {
+        float: right; }
+  #imgContainer #imgShow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center; }
+    #imgContainer #imgShow .icon-close {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      right: 10px;
+      top: 10px;
+      z-index: 100;
+      background: url("../images/close.png") no-repeat center;
+      -webkit-background-size: contain;
+      background-size: contain;
+      cursor: pointer; }
+    #imgContainer #imgShow > img {
+      max-width: 90%;
+      vertical-align: middle;
+      max-height: 100%; }
+    #imgContainer #imgShow > button, #imgContainer .topBar #imgShow > .btnUpload {
+      position: absolute;
+      width: 50px;
+      height: 30px;
+      margin-right: auto;
+      bottom: 10px;
+      cursor: pointer; }
+      #imgContainer #imgShow > button.btn-prev, #imgContainer .topBar #imgShow > .btn-prev.btnUpload {
+        left: 10px; }
+      #imgContainer #imgShow > button.btn-next, #imgContainer .topBar #imgShow > .btn-next.btnUpload {
+        right: 10px; }
+
+/*# sourceMappingURL=files-reader.css.map */

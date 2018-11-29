@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>文件管理</title>
+  <link rel="stylesheet" href="css/files-reader.css">
+</head>
+<body>
+  <div id="imgContainer"></div>
+
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/file-manage.js"></script>
+<script>
+  var imgs = new ImgsManage({
+    el:'#imgContainer',
+    url:'../resources/',
+    w:600,
+    h:500
+  });
+</script>
+</body>
+</html>
