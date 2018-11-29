@@ -185,7 +185,7 @@
     },
     newDir:function () {
       $(".newDir").on('click',function () {
-        var name = prompt("请输入要创建的文件夹名字");
+        var name = prompt("请输入要创建的文件夹名字（不能包含中文）");
         if(name !== null && name !== ""){
           $.ajax({
             url:'data/file-new.php',
