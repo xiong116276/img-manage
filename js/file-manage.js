@@ -60,7 +60,8 @@
           var html = '';
           $.each(data.dirs,function (k,v) {
             if(k > 1){
-              html += '<div class="item dirs"><img src="images/dir.jpg" alt=""><p class="text" title="'+v+'">'+v+'</p></div>';
+              html += '<div class="item dirs"><img src="images/dir.jpg" alt=""><p class="text" title="'+v+'">'+v+'</p>' +
+                  '<p class="btnOperation"><button class="deleteDir">删除文件夹</button></p></div>';
             }
           }.bind(this));
           $.each(data.files,function (k,v) {
@@ -143,7 +144,29 @@
               $.ajax({
                 url:'data/file-delete.php',
                 type:'post',
-                data:{'url':url},
+                data:{'url':url,'type':'file'},
+                success:function (data) {
+                  alert(data);
+                  this.init(this.url);
+                }.bind(this),
+                error:function (err) {
+                  console.log(err);
+                }
+              })
+            }
+
+          }.bind(this));
+
+          //删除文件夹
+          $('.btnOperation .deleteDir').on('click',function (event) {
+            var target = event.target;
+            var url = this.url+$(target).parents('p.btnOperation').siblings('p.text').text();
+            var r=confirm("确定要删除该文件夹及其所有文件吗？");
+            if (r) {
+              $.ajax({
+                url:'data/file-delete.php',
+                type:'post',
+                data:{'url':url,'type':'dir'},
                 success:function (data) {
                   alert(data);
                   this.init(this.url);
