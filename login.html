@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登录</title>
+  <link rel="stylesheet" href="css/files-reader.css">
+</head>
+<body id="login">
+  <form action="">
+    <p class="title">登录图片管理</p>
+    <div class="input-group">
+      <input id="uname" type="text" name="uname" placeholder="请输入账号" autofocus autocomplete="off">
+    </div>
+    <div class="input-group">
+      <input id="upassword" type="password" name="upassword" placeholder="请输入密码" autocomplete="off">
+    </div>
+    <div class="btn-login">登录</div>
+  </form>
+  <script src="js/jquery-3.1.1.js"></script>
+  <script>
+    function checkLogin(){
+      var uname = $("#uname").val();
+      var upsd  = $("#upassword").val();
+
+      if(uname.length < 1 ||uname == null){
+        alert('用户名不能为空！');
+        $('#uname').focus();
+      }else{
+        if(upsd.length < 1 || upsd == null){
+          alert('密码不能为空！');
+          $('#upassword').focus();
+        }else{
+          $.ajax({
+            url:'data/login.php',
+            type:'post',
+            data:{'uname':uname,'upassword':upsd},
+            success:function (data) {
+              var state = data.state;
+              switch (state) {
+                case 0:alert('输入账号错误！');$('#uname').focus();break;
+                case 1:alert('登录成功！');sessionStorage.setItem('uname',uname);window.location.href = 'files-reader.html';break;
+                case 2:alert('输入密码错误！');$('#upassword').focus();break;
+              }
+            },
+            error:function (err) {
+              console.log(err)
+            }
+          })
+        }
+      }
+    }
+    $(".btn-login").on("click",function () {
+      checkLogin();
+    });
+    document.onkeydown= function (e) {
+      if(e.key === 'Enter'){
+        checkLogin();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -6,16 +6,28 @@
   <link rel="stylesheet" href="css/files-reader.css">
 </head>
 <body>
+  <p class="showTitle"><span class="uname"></span>文件和文件夹名称中不能包含中文！</p>
   <div id="imgContainer"></div>
 
-  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery-3.1.1.js"></script>
   <script src="js/file-manage.js"></script>
 <script>
+  $(function () {
+    var uname = sessionStorage.getItem('uname');
+    if(uname===''||uname === null){
+      window.location.href = 'login.html';
+    }else{
+      $('.showTitle').find('.uname').html('登录用户：'+uname);
+    }
+  });
   var imgs = new ImgsManage({
     el:'#imgContainer',
     url:'../resources/',
-    w:1000,
+    w:1200,
     h:600
+  });
+  $('.showTitle').css({
+    'width':imgs.w+'px'
   });
 </script>
 </body>

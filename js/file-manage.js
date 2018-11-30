@@ -123,9 +123,10 @@
           //临时容器，不能为display:none
           $('<textarea  style="opacity: 0" id="temp"></textarea >').appendTo($('body'));
           $('.btnOperation .copy').on('click',function (event) {
+            var baseURL = window.location.href.split('/').slice(0,-1).join('/');
             var target = event.target;
             var text = this.url+$(target).parents('p.btnOperation').siblings('p.text').text();
-            $('#temp').val(text.slice(2));
+            $('#temp').val(baseURL+text.slice(2));
             $('#temp').select();
             try{
               document.execCommand("Copy"); //内容复制到剪切板

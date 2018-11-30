@@ -13,7 +13,7 @@ $dirs  = array();
 while (($file = readdir($handle))!==false){
     //获取扩展名 list(var1,var2...)把数组中的值赋给一些变量; explode()打乱字符串为数组；js split();
     //$filesname 获取到文件名字；$kzm 获取到拓展名
-    $file=iconv("gb2312","utf-8",$file);
+    $file=iconv("gbk","utf-8",$file);
     if(!is_dir($url.$file)){//文件夹过滤
         list($filesname,$kzm) = explode(".",$file);
         if($kzm=="gif"||$kzm=="jpg"||$kzm =="JPG"||$kzm=="JPEG"||$kzm == "png"||$kzm == "ico"){
