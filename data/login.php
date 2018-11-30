@@ -1,6 +1,6 @@
 <?php
     header("Content-Type:application/json,charset=utf-8");
-    $conn = mysqli_connect('bdm28760038.my3w.com','账号','密码','bdm28760038_db',3306);
+    $conn = mysqli_connect('地址','账号','密码','数据库名称',3306);
 
     $uname=$_REQUEST["uname"];
     $upassword=$_REQUEST["upassword"];

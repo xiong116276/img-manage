@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <title>登录</title>
   <link rel="stylesheet" href="css/files-reader.css">
+  <style>
+    .verCode{
+      float: right;
+    }
+  </style>
 </head>
 <body id="login">
   <form action="">
@@ -14,14 +19,27 @@
     <div class="input-group">
       <input id="upassword" type="password" name="upassword" placeholder="请输入密码" autocomplete="off">
     </div>
+    <div class="input-group">
+      <input id="checkCode" style="width: 180px;" type="text" name="checkCode" placeholder="请输入验证码" autocomplete="off">
+    </div>
     <div class="btn-login">登录</div>
   </form>
   <script src="js/jquery-3.1.1.js"></script>
+  <script src="js/myVerCode.js"></script>
   <script>
+    var myVerCode = new MyVerCode({
+      el:"#checkCode",
+      w:100,
+      h:40,
+      color:"#fff",
+      bg:"blue",
+      // font:""
+    });
+
     function checkLogin(){
       var uname = $("#uname").val();
       var upsd  = $("#upassword").val();
-
+      var verCode = $("#checkCode").val();
       if(uname.length < 1 ||uname == null){
         alert('用户名不能为空！');
         $('#uname').focus();
@@ -30,22 +48,32 @@
           alert('密码不能为空！');
           $('#upassword').focus();
         }else{
-          $.ajax({
-            url:'data/login.php',
-            type:'post',
-            data:{'uname':uname,'upassword':upsd},
-            success:function (data) {
-              var state = data.state;
-              switch (state) {
-                case 0:alert('输入账号错误！');$('#uname').focus();break;
-                case 1:alert('登录成功！');sessionStorage.setItem('uname',uname);window.location.href = 'files-reader.html';break;
-                case 2:alert('输入密码错误！');$('#upassword').focus();break;
-              }
-            },
-            error:function (err) {
-              console.log(err)
+          if(verCode.length<1||verCode == null){
+            alert('验证码不能为空！');
+            $("#checkCode").focus();
+          }else{
+            if(verCode.toLowerCase() === myVerCode.code.toLowerCase()){
+              $.ajax({
+                url:'data/login.php',
+                type:'post',
+                data:{'uname':uname,'upassword':upsd},
+                success:function (data) {
+                  var state = data.state;
+                  switch (state) {
+                    case 0:alert('输入账号错误！');$('#uname').focus();break;
+                    case 1:alert('登录成功！');sessionStorage.setItem('uname',uname);window.location.href = 'files-reader.html';break;
+                    case 2:alert('输入密码错误！');$('#upassword').focus();break;
+                  }
+                },
+                error:function (err) {
+                  console.log(err)
+                }
+              })
+            }else{
+              alert("验证码输入错误！");
+              $("#checkCode").focus();
             }
-          })
+          }
         }
       }
     }
